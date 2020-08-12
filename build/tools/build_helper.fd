@@ -356,13 +356,13 @@ install_opencoord.org_freediameter() {
 
   case "$(get_distribution_release)" in
     "ubuntu18.04")
-      specific_packages="build-essential cmake-curses-gui g++ libgcrypt-dev libidn11-dev libmysqlclient-dev libpq-dev libsctp1 libsctp-dev libxml2-dev python-dev ssl-cert"
+      specific_packages="build-essential cmake-curses-gui g++ libgcrypt-dev libidn11-dev libmysqlclient-dev libpq-dev libsctp1 libsctp-dev libxml2-dev python-dev ssl-cert debhelper"
     ;;
     "centos7")
-      specific_packages="build-essential cmake-curses-gui g++ libgcrypt-dev libidn11-dev libmysqlclient-dev libpq-dev libsctp1 libsctp-dev libxml2-dev python-dev ssl-cert"
+      specific_packages="build-essential cmake-curses-gui g++ libgcrypt-dev libidn11-dev libmysqlclient-dev libpq-dev libsctp1 libsctp-dev libxml2-dev python-dev ssl-cert debhelper"
     ;;
     "centos8")
-      specific_packages="gcc-c++ patch libgcrypt-devel libidn-devel libpq-devel lksctp-tools lksctp-tools-devel libxml2-devel python2-devel"
+      specific_packages="gcc-c++ patch libgcrypt-devel libidn-devel libpq-devel lksctp-tools lksctp-tools-devel libxml2-devel python2-devel debhelper"
     ;;
     "rhel8.2")
       specific_packages="gcc-c++ patch libgcrypt-devel libidn-devel libpq-devel lksctp-tools lksctp-tools-devel libxml2-devel python2-devel"
@@ -376,7 +376,6 @@ install_opencoord.org_freediameter() {
     automake  \
     bison     \
     cmake \
-    debhelper \
     flex  \
     gcc \
     gdb \
