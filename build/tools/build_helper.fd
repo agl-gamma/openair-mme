@@ -420,6 +420,7 @@ install_opencoord.org_freediameter() {
             cnt=10
         fi
     done
+    git log -n2
     [[ $ret -ne 0 ]] && return $ret
     echo_info "Applying Patch"
     if ! patch -R -p1 -s -f --dry-run <  $OPENAIRCN_DIR/build/patches/0001-opencoord.org.freeDiameter.patch; then
@@ -433,9 +434,15 @@ install_opencoord.org_freediameter() {
     rm -rf build
     mkdir -p build
     cd build
+    echo_info "Doing cmake"
     $CMAKE ..
     res=$?
+    if [[ $res -ne 0 ]]; then
+      echo_info "Debugging cmake output"
+      cat /openair-mme/build/git_submodules/freeDiameter/build/CMakeFiles/CMakeOutput.log
+    fi
     [[ $res -ne 0 ]] && popd && return $res
+    echo_info "Enable SCTP"
     awk '{if (/^DISABLE_SCTP/) gsub(/OFF/, "ON"); print}' CMakeCache.txt > tmp && mv tmp CMakeCache.txt
     make $JNPROC
     res=$?
