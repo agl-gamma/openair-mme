@@ -407,20 +407,21 @@ install_opencoord.org_freediameter() {
     [[ $ret -ne 0 ]] && return $ret
     echo_info "pushd $OPENAIRCN_DIR/build/git_submodules/freeDiameter"
     pushd $OPENAIRCN_DIR/build/git_submodules/freeDiameter
-    echo_info "git pull origin master"
-    cnt="0"
-    while [ $cnt -lt 3 ]
-    do
-        git pull origin master
-        ret=$?
-        if [[ $ret -ne 0 ]]
-        then
-            cnt=$[$cnt+1]
-        else
-            cnt=10
-        fi
-    done
-    git log -n2
+#    echo_info "git pull origin master"
+#    cnt="0"
+#    while [ $cnt -lt 3 ]
+#    do
+#        git pull origin master
+#        ret=$?
+#        if [[ $ret -ne 0 ]]
+#        then
+#            cnt=$[$cnt+1]
+#        else
+#            cnt=10
+#        fi
+#    done
+    git checkout -f 13d9601bf947af3286764506368fc3d04672bfde
+    git log -n1
     [[ $ret -ne 0 ]] && return $ret
     echo_info "Applying Patch"
     if ! patch -R -p1 -s -f --dry-run <  $OPENAIRCN_DIR/build/patches/0001-opencoord.org.freeDiameter.patch; then
